@@ -1,0 +1,21 @@
+format: jb-book
+root: intro
+
+parts:
+  - caption: Sección 1
+    chapters:
+    - file: section01/reto_1_adm
+    - file: section01/taller_1
+    - file: section01/videos_1
+
+  - caption: Sección 2
+    chapters:
+    - file: section02/reto_1_adm
+    - file: section02/taller_2
+    - file: section02/videos_2
+
+  - caption: Información Adicional
+    chapters:
+    - file: references
+    - file: changelog
+    - file: credits
