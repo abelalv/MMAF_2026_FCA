@@ -7,6 +7,7 @@ parts:
     - file: section01/reto_1_adm
     - file: section01/taller_1
     - file: section01/videos_1
+    - file: section01/actividad01
 
   - caption: Sección 2
     chapters:
