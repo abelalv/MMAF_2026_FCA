@@ -8,6 +8,7 @@ parts:
     - file: section01/taller_1
     - file: section01/videos_1
     - file: section01/actividad01
+    - file: section01/actividad02
 
   - caption: Sección 2
     chapters:
