@@ -1,3 +1,3 @@
 # References
-:::{bibliography}
-:::
+```{bibliography}
+:filter: all

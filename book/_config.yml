@@ -45,6 +45,8 @@ sphinx:
         
     iframe_width: "100%"
     iframe_aspectratio: "auto"
+    # ... otras configuraciones
+    exclude_patterns: ["_build", "Thumbs.db", ".DS_Store"]
 
 parse:
   myst_enable_extensions:
