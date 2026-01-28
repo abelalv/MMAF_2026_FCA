@@ -1,35 +1,32 @@
-# Configuración corregida para MMAF Teachbook
 title: MMAF Teachbook
 author: Tu Nombre o Institución
 copyright: "2024"
 
-# 1. Configuración de ejecución (Importante para que tus scripts corran)
 execute:
-  execute_notebooks: "force" # Cambiado de 'off' a 'force' para asegurar que los resultados se generen
+  execute_notebooks: "force"
   allow_errors: true
   stderr_output: show
 
-# 2. Configuración HTML y Visual
 html:
   use_multitoc_numbering: true
-  extra_footer: ""
-  google_analytics_id: ""
-  # Forzamos que el contenido sea lo más ancho posible para evitar celdas partidas
   home_page_in_navbar: true
 
-# 3. Configuración de Sphinx y extensiones
+# --- SECCIÓN CRÍTICA CORREGIDA ---
 sphinx:
   extra_extensions:
     - teachbooks_favourites
+    - sphinxcontrib.bibtex  # <--- FALTABA ESTA EXTENSIÓN
   config:
-    language: es # Cambiado a español para que los botones digan "Ejecutar" en lugar de "Run"
-    html_js_files:
-    - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+    language: es
+    # Configuración necesaria para BibTeX
+    bibtex_bibfiles: 
+      - references.bib      # <--- Asegúrate de que este archivo existe en tu carpeta 'book'
     
-    # Configuración de Live Code (Thebe)
+    html_js_files:
+      - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+    
     thebe_config:
       use_thebe_lite: true
-      # Eliminamos el bloqueo de .ipynb para que tus retos funcionen interactivamente
       exclude_patterns: ["**/_*.yml"] 
     
     html_theme_options:
@@ -37,24 +34,18 @@ sphinx:
         text: MMAF Teachbook
         image_light: TeachBooks_logo.svg
         image_dark: TeachBooks_logo_inverted.svg
-      
-      # REEMPLAZA estas URLs con las de tu repositorio real
       repository_url: "https://github.com/abelalv/MMAF_2026_FCA" 
       path_to_docs: "book"
       repository_branch: "main"
-      
       use_edit_page_button: true
       use_repository_button: true
       use_issues_button: true
-      
       launch_buttons:
-        thebe: true # Activa el botón de "Live Code" (cohete)
+        thebe: true
         
-    # Ajuste de ancho de IFrames y celdas (Para evitar el error de la imagen partida)
     iframe_width: "100%"
     iframe_aspectratio: "auto"
 
-# 4. Parseo de archivos
 parse:
   myst_enable_extensions:
     - colon_fence
