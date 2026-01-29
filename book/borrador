@@ -1,0 +1,57 @@
+title: MMAF Teachbook
+author: Tu Nombre o Institución
+copyright: "2024"
+
+execute:
+  execute_notebooks: "force"
+  allow_errors: true
+  stderr_output: show
+
+html:
+  use_multitoc_numbering: true
+  home_page_in_navbar: true
+
+# --- SECCIÓN CRÍTICA CORREGIDA ---
+sphinx:
+  extra_extensions:
+    - teachbooks_favourites
+    - sphinxcontrib.bibtex  # <--- FALTABA ESTA EXTENSIÓN
+  config:
+    language: es
+    # Configuración necesaria para BibTeX
+    bibtex_bibfiles: 
+      - references.bib      # <--- Asegúrate de que este archivo existe en tu carpeta 'book'
+    
+    html_js_files:
+      - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+    
+    thebe_config:
+      use_thebe_lite: true
+      exclude_patterns: ["**/_*.yml"] 
+    
+    html_theme_options:
+      logo:
+        text: MMAF Teachbook
+        image_light: TeachBooks_logo.svg
+        image_dark: TeachBooks_logo_inverted.svg
+      repository_url: "https://github.com/abelalv/MMAF_2026_FCA" 
+      path_to_docs: "book"
+      repository_branch: "main"
+      use_edit_page_button: true
+      use_repository_button: true
+      use_issues_button: true
+      launch_buttons:
+        thebe: true
+        
+    iframe_width: "100%"
+    iframe_aspectratio: "auto"
+    # ... otras configuraciones
+    exclude_patterns: ["_build", "Thumbs.db", ".DS_Store"]
+
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - dollarmath
+    - linkify
+    - substitution
+    - tasklist
