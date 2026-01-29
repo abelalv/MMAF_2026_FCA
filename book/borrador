@@ -1,57 +1,73 @@
-title: MMAF Teachbook
-author: Tu Nombre o Institución
-copyright: "2024"
+#para llegar al commit  anterior
+1. Regresar en el tiempo (Localmente)
 
-execute:
-  execute_notebooks: "force"
-  allow_errors: true
-  stderr_output: show
+Este comando moverá tu proyecto local a ese estado exacto:
+Bash
 
-html:
-  use_multitoc_numbering: true
-  home_page_in_navbar: true
+git reset --hard 7a09016106147b73767a7da66d59137677fd6817
 
-# --- SECCIÓN CRÍTICA CORREGIDA ---
-sphinx:
-  extra_extensions:
-    - teachbooks_favourites
-    - sphinxcontrib.bibtex  # <--- FALTABA ESTA EXTENSIÓN
-  config:
-    language: es
-    # Configuración necesaria para BibTeX
-    bibtex_bibfiles: 
-      - references.bib      # <--- Asegúrate de que este archivo existe en tu carpeta 'book'
+2. Asegurar que la conexión sea por SSH
+
+Como antes te pidió usuario y contraseña (y falló), asegúrate de que Git use tu llave SSH con este comando:
+Bash
+
+git remote set-url origin git@github.com:abelalv/MMAF_2026_FCA.git
+
+3. Actualizar GitHub (El paso final)
+
+Ahora, "obliga" a GitHub a ponerse en el mismo estado de éxito que ese commit. Al hacer esto, se disparará de nuevo la compilación que sí funcionaba:
+Bash
+
+git push origin main --force
+---
+import matplotlib.pyplot as plt
+import ipywidgets as widgets
+from IPython.display import display, Markdown, clear_output
+from fractions import Fraction
+
+# Función para actualizar la visualización
+def actualizar_todo(porcentaje):
+    # Crear la figura con 3 áreas: Tarta, Barra y Texto/Fracción
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
     
-    html_js_files:
-      - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
-    
-    thebe_config:
-      use_thebe_lite: true
-      exclude_patterns: ["**/_*.yml"] 
-    
-    html_theme_options:
-      logo:
-        text: MMAF Teachbook
-        image_light: TeachBooks_logo.svg
-        image_dark: TeachBooks_logo_inverted.svg
-      repository_url: "https://github.com/abelalv/MMAF_2026_FCA" 
-      path_to_docs: "book"
-      repository_branch: "main"
-      use_edit_page_button: true
-      use_repository_button: true
-      use_issues_button: true
-      launch_buttons:
-        thebe: true
-        
-    iframe_width: "100%"
-    iframe_aspectratio: "auto"
-    # ... otras configuraciones
-    exclude_patterns: ["_build", "Thumbs.db", ".DS_Store"]
+    # 1. Gráfico de Tarta
+    ax1.pie([porcentaje, 100 - porcentaje], 
+            startangle=90, 
+            colors=['#3498db', '#ecf0f1'],
+            wedgeprops={'edgecolor': 'white', 'linewidth': 2})
+    ax1.set_title(f"Visualización: {porcentaje}%")
 
-parse:
-  myst_enable_extensions:
-    - colon_fence
-    - dollarmath
-    - linkify
-    - substitution
-    - tasklist
+    # 2. Gráfico de Barra (Fracción Decimal)
+    ax2.barh(['Total (100)'], [100], color='#ecf0f1')
+    ax2.barh(['Total (100)'], [porcentaje], color='#3498db')
+    ax2.set_xlim(0, 100)
+    ax2.set_title("Ubicación en la Recta")
+
+    plt.show()
+
+    # 3. Cálculo de Fracciones
+    frac_original = f"\\frac{{{porcentaje}}}{{100}}"
+    frac_simplificada = Fraction(porcentaje, 100)
+    decimal = porcentaje / 100
+    
+    # Renderizado de fórmulas matemáticas
+    display(Markdown(f"""
+### Equivalencias Matemáticas:
+| Porcentaje | Fracción Base | Fracción Simplificada | Decimal |
+| :---: | :---: | :---: | :---: |
+| **{porcentaje}%** | ${frac_original}$ | **$\\frac{{{frac_simplificada.numerator}}}{{{frac_simplificada.denominator}}}$** | **{decimal}** |
+"""))
+
+# Configuración del Slider
+slider = widgets.IntSlider(
+    value=50, min=0, max=100, step=1,
+    description='Ajustar %:',
+    style={'description_width': 'initial'},
+    layout={'width': '80%'}
+)
+
+# Salida
+out = widgets.interactive_output(actualizar_todo, {'porcentaje': slider})
+
+display(Markdown("## 🧮 Simulador de Fracciones y Porcentajes"))
+display(widgets.VBox([slider, out]))
