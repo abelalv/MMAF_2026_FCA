@@ -27,6 +27,11 @@ parts:
     chapters:
     - file: section04/actividad04
     - file: section04/taller_4
+  
+  - caption: Sección 5
+    chapters:
+    - file: section05/actividad05
+    - file: section05/taller_5
 
   - caption: Información Adicional
     chapters:
