@@ -25,8 +25,8 @@ parts:
 
   - caption: Sección 4
     chapters:
-    - file: section03/actividad04
-    - file: section03/taller_4
+    - file: section04/actividad04
+    - file: section04/taller_4
 
   - caption: Información Adicional
     chapters:
