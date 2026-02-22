@@ -23,6 +23,11 @@ parts:
     - file: section03/taller_3
     - file: section03/videos_3
 
+  - caption: Sección 4
+    chapters:
+    - file: section03/actividad04
+    - file: section03/taller_4
+
   - caption: Información Adicional
     chapters:
     - file: references
