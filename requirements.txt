@@ -4,6 +4,7 @@ teachbooks # depends on jupyter-book v1
 matplotlib
 ipywidgets
 numpy
+pandas
 
 
 # Our favourite Sphinx extensions in one line, replace with individual extensions if you prefer some extensions not to be included (https://github.com/TeachBooks/TeachBooks-Favourites)
