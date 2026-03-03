@@ -1,5 +1,7 @@
 #@title Ocultar código
 import math
+import micropip
+await micropip.install("pandas")
 import pandas as pd
 import matplotlib.pyplot as plt
 
