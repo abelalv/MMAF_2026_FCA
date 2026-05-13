@@ -40,6 +40,10 @@ parts:
   - caption: Sección 7
     chapters:
     - file: section07/actividad07
+    
+  - caption: Sección 8
+    chapters:
+    - file: section08/actividad08
 
   - caption: Información Adicional
     chapters:
